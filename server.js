@@ -16,7 +16,8 @@ app.use(morgan('dev'));
 //1 test route
 app.use('/api/v1/test',require('./routes/testRoutes'));
 //PORT
-const PORT = 8080;
+//to avoid crash in this use process.env.PORT 
+const PORT =  process.env.PORT || 8080;
 //listen
 app.listen(PORT, () => {
     console.log(
