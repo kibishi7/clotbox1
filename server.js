@@ -15,6 +15,7 @@ app.use(morgan('dev'));
 //routes
 //1 test route
 app.use('/api/v1/test',require('./routes/testRoutes'));
+app.use("/api/v1/auth", require("./routes/authRoutes"));
 //PORT
 //to avoid crash in this use process.env.PORT 
 const PORT =  process.env.PORT || 8080;
