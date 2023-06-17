@@ -1,5 +1,7 @@
 const userModel = require("../models/userModel");
 const bcrypt = require("bcryptjs");
+//add jwt to create token 
+const jwt = require("jsonwebtoken");
 //for register
 const registerController = async (req, res) => {
   try {
@@ -36,6 +38,62 @@ const registerController = async (req, res) => {
   }
 };
 
-module.exports = { registerController};
 
+
+
+
+
+//login portion
+const loginController = async (req, res) => {
+  try {
+    const user = await userModel.findOne({ email: req.body.email });
+    if (!user) {
+      return res.status(404).send({
+        success: false,
+        message: "Invalid Credentials",
+      });
+    }
+    //check role
+    if (user.role !== req.body.role) {
+      return res.status(500).send({
+        success: false,
+        message: "role dosent match",
+      });
+    }
+    //compare password 
+    const comparePassword = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
+    if (!comparePassword) {
+      return res.status(500).send({
+        success: false,
+        message: "Invalid Credentials",
+      });
+    }
+    //create token using sign function on the basus of user id 
+    //expired token 1 day
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
+    return res.status(200).send({
+      success: true,
+      message: "Login Successfully",
+      token,
+      user,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error In Login API",
+      error,
+    });
+  }
+};
+
+
+
+
+module.exports = { registerController,loginController};
 //now add to server js file 
