@@ -28,8 +28,9 @@ app.use(morgan('dev'));
 //1 test route 
 //use app.use instead if app.get 
 app.use('/api/v1/test',require('./routes/testRoutes'));
+//now add to serverjs of file auth register 
+app.use("/api/v1/auth", require("./routes/authRoutes"));
 
-// app.use("/api/v1/auth", require("./routes/authRoutes"));
 
 //PORT
 //to avoid crash in this use process.env.PORT 
