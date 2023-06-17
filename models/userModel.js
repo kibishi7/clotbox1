@@ -1,3 +1,4 @@
+//import mongoose beacuse with the help of mongoose we create schem 
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
@@ -57,5 +58,5 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
+//export this and userschema is refrence and user name in the model is model
 module.exports = mongoose.model("users", userSchema);
