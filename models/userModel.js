@@ -1,4 +1,4 @@
-//import mongoose beacuse with the help of mongoose we create schem 
+//import mongoose beacuse with the help of mongoose we create schem
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
@@ -53,7 +53,7 @@ const userSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
-      required: [true, "phone numbe is required"],
+      required: [true, "phone number is required"],
     },
   },
   { timestamps: true }

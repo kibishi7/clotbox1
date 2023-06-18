@@ -33,7 +33,7 @@ const createInventoryController = async (req, res) => {
   }
 };
 
-// GET DONAR REOCRDS
+// GET DONAR RECORDS
 const getInventoryController = async (req, res) => {
   try {
     const inventory = await inventoryModel
