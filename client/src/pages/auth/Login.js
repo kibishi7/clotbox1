@@ -1,14 +1,26 @@
 import React from "react";
-import reportWebVitals from "./../../reportWebVitals";
+import InputType from "../../components/shared/Form/InputType";
 
 const Login = () => {
   return (
     <>
       <div className="row">
-        <div className="col-md-8">
+        <div className="col-md-8 form-banner">
           <img src="./assets/images/banner1.jpg" alt="loginImage" />
         </div>
-        <div className="col-md-4">login</div>
+        <div className="col-md-4 form-container">
+          <form>
+            <InputType
+              labelText={"EMail"}
+              labelFor={"forEMail"}
+              inputType={"email"}
+              name={"email"}
+            />
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     </>
   );
