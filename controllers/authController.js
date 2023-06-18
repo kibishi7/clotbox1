@@ -1,13 +1,13 @@
 const userModel = require("../models/userModel");
 const bcrypt = require("bcryptjs");
-//add jwt to create token 
+//add jwt to create token
 const jwt = require("jsonwebtoken");
 //for register
 const registerController = async (req, res) => {
   try {
     const exisitingUser = await userModel.findOne({ email: req.body.email });
     //validation
-    //if already exist 
+    //if already exist
     if (exisitingUser) {
       return res.status(200).send({
         success: false,
@@ -16,7 +16,7 @@ const registerController = async (req, res) => {
     }
     //hash password
     //number of routes required
-    //open npmjs and bcrypt to use how to work hash fn 
+    //open npmjs and bcrypt to use how to work hash fn
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
     req.body.password = hashedPassword;
@@ -37,12 +37,6 @@ const registerController = async (req, res) => {
     });
   }
 };
-
-
-
-
-
-
 //login portion
 const loginController = async (req, res) => {
   try {
@@ -60,7 +54,7 @@ const loginController = async (req, res) => {
         message: "role dosent match",
       });
     }
-    //compare password 
+    //compare password
     const comparePassword = await bcrypt.compare(
       req.body.password,
       user.password
@@ -71,7 +65,7 @@ const loginController = async (req, res) => {
         message: "Invalid Credentials",
       });
     }
-    //create token using sign function on the basus of user id 
+    //create token using sign function on the basus of user id
     //expired token 1 day
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
@@ -92,7 +86,6 @@ const loginController = async (req, res) => {
   }
 };
 
-
 //GET CURRENT USER
 const currentUserController = async (req, res) => {
   try {
@@ -112,6 +105,5 @@ const currentUserController = async (req, res) => {
   }
 };
 
-
-module.exports = { registerController,loginController,currentUserController};
-//now add to server js file 
+module.exports = { registerController, loginController, currentUserController };
+//now add to server js file
