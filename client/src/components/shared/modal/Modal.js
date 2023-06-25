@@ -9,6 +9,7 @@ const Modal = () => {
   const [quantity, setQuantity] = useState(0);
   const [email, setEmail] = useState("");
   const { user } = useSelector((state) => state.auth);
+
   // handle modal data
   const handleModalSubmit = async () => {
     try {
@@ -16,6 +17,7 @@ const Modal = () => {
         return alert("Please Provide All Fields");
       }
       const { data } = await API.post("/inventory/create-inventory", {
+        //donarEmail     //donaremail removed , there is no use of it now
         email,
         organisation: user?._id,
         inventoryType,
