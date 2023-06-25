@@ -4,6 +4,7 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+<<<<<<< Updated upstream
 import PublicRoute from "./components/Routes/PublicRoute";
 
 function App() {
@@ -11,16 +12,146 @@ function App() {
     <>
       <ToastContainer/>
       <Routes>
+=======
+<<<<<<< HEAD
+import ProtectedRoute from "./components/Routes/ProtectedRoute";
+import PublicRoute from "./components/Routes/PublicRoute";
+import Donar from "./pages/Dashboard/Donar";
+import Hospitals from "./pages/Dashboard/Hospitals";
+import OrganisationPage from "./pages/Dashboard/OrganisationPage";
+import Consumer from "./pages/Dashboard/Consumer";
+import Donation from "./pages/Donation";
+import Analytics from "./pages/Dashboard/Analytics";
+import DonarList from "./pages/Admin/DonarList";
+import HospitalList from "./pages/Admin/HospitalList";
+import OrgList from "./pages/Admin/OrgList";
+import AdminHome from "./pages/Admin/AdminHome";
+function App() {
+  return (
+    <>
+      <ToastContainer />
+      <Routes>
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminHome />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/donar-list"
+          element={
+            <ProtectedRoute>
+              <DonarList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/hospital-list"
+          element={
+            <ProtectedRoute>
+              <HospitalList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/org-list"
+          element={
+            <ProtectedRoute>
+              <OrgList />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/hospital"
+          element={
+            <ProtectedRoute>
+              <Hospitals />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/analytics"
+          element={
+            <ProtectedRoute>
+              <Analytics />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/consumer"
+          element={
+            <ProtectedRoute>
+              <Consumer />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/donation"
+          element={
+            <ProtectedRoute>
+              <Donation />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/orgnaisation"
+          element={
+            <ProtectedRoute>
+              <OrganisationPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/donar"
+          element={
+            <ProtectedRoute>
+              <Donar />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/"
+          element={
+=======
+import PublicRoute from "./components/Routes/PublicRoute";
+
+function App() {
+  return (
+    <>
+      <ToastContainer/>
+      <Routes>
+>>>>>>> Stashed changes
       <Route
           path="/"
           element={
             //without token we cant access the homepage
             //wrap with protected route
+<<<<<<< Updated upstream
+=======
+>>>>>>> 3b0aa1b7e2d74a9be6e6ccf642c4bb9df95d8ad5
+>>>>>>> Stashed changes
             <ProtectedRoute>
               <HomePage />
             </ProtectedRoute>
           }
         />
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+=======
+>>>>>>> Stashed changes
 
         <Route
          path="/login" element={
@@ -30,6 +161,10 @@ function App() {
         } />
 
 <Route
+<<<<<<< Updated upstream
+=======
+>>>>>>> 3b0aa1b7e2d74a9be6e6ccf642c4bb9df95d8ad5
+>>>>>>> Stashed changes
           path="/register"
           element={
             <PublicRoute>
