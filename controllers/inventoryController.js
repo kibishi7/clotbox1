@@ -62,6 +62,18 @@ const totalIn = totalInOfRequestedBlood[0]?.total || 0;
       ]);
       const totalOut = totalOutOfRequestedBloodGroup[0]?.total || 0;
 
+ //in & out Calc
+ const availableQuanityOfBloodGroup = totalIn - totalOut;
+
+ //quantity validation
+ if (availableQuanityOfBloodGroup < requestedQuantityOfBlood) {
+   return res.status(500).send({
+     success: false,
+     message: `Only ${availableQuanityOfBloodGroup}ML of ${requestedBloodGroup.toUpperCase()} is available`,
+   });
+ }
+ req.body.hospital = user?._id;
+} 
     //save record
     const inventory = new inventoryModel(req.body);
     await inventory.save();
