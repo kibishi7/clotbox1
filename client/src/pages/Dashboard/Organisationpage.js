@@ -12,7 +12,7 @@ const OrganisationPage = () => {
   const getOrg = async () => {
     try {
       if (user?.role === "donar") {
-        const { data } = await API.get("/inventory/et-orgnaisation");
+        const { data } = await API.get("/inventory/get-orgnaisation");
         //   console.log(data);
         if (data?.success) {
           setData(data?.orgnaisations);
