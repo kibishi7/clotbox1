@@ -11,7 +11,7 @@ import Hospitals from "./pages/Dashboard/Hospitals";
 import Consumer from "./pages/Dashboard/Consumer";
 import Donation from "./pages/Donation";
 import Analytics from "./pages/Dashboard/Analytics";
-import OrganisationPage from "./pages/Dashboard/Organisationpage";
+import OrganisationPage from "./pages/Dashboard/OrganisationPage";
 import DonarList from "./pages/Admin/DonarList";
 import HospitalList from "./pages/Admin/HospitalList";
 import OrgList from "./pages/Admin/OrgList";
