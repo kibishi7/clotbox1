@@ -21,6 +21,16 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+      <Route
+          path="/organisation"
+          element={
+            <ProtectedRoute>
+              <OrganisationPage />
+            </ProtectedRoute>
+          }
+        />
+
         <Route
           path="/donar"
           element={
