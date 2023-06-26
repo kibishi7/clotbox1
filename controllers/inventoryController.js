@@ -25,26 +25,26 @@ const createInventoryController = async (req, res) => {
       const requestedQuantityOfBlood = req.body.quantity;
       const organisation = new mongoose.Types.ObjectId(req.body.userId);
 
-            //calculate Blood Quanitity
-            const totalInOfRequestedBlood = await inventoryModel.aggregate([
-              {
-                $match: {
-                  organisation,
-                  inventoryType: "in",
-                  bloodGroup: requestedBloodGroup,
-                },
-              },
-              {
-                  $group: {
-                    _id: "$bloodGroup",
-                    total: { $sum: "$quantity" },
-                  },
-                },
-              ]);
+      //calculate Blood Quanitity
+      const totalInOfRequestedBlood = await inventoryModel.aggregate([
+        {
+          $match: {
+            organisation,
+            inventoryType: "in",
+            bloodGroup: requestedBloodGroup,
+          },
+        },
+        {
+          $group: {
+            _id: "$bloodGroup",
+            total: { $sum: "$quantity" },
+          },
+        },
+      ]);
 
-const totalIn = totalInOfRequestedBlood[0]?.total || 0;
-               //calculate 'OUT' Blood Quanitity
- 
+      const totalIn = totalInOfRequestedBlood[0]?.total || 0;
+      //calculate 'OUT' Blood Quanitity
+
       const totalOutOfRequestedBloodGroup = await inventoryModel.aggregate([
         {
           $match: {
@@ -62,21 +62,20 @@ const totalIn = totalInOfRequestedBlood[0]?.total || 0;
       ]);
       const totalOut = totalOutOfRequestedBloodGroup[0]?.total || 0;
 
- //in & out Calc
- const availableQuanityOfBloodGroup = totalIn - totalOut;
+      //in & out Calc
+      const availableQuanityOfBloodGroup = totalIn - totalOut;
 
- //quantity validation
- if (availableQuanityOfBloodGroup < requestedQuantityOfBlood) {
-   return res.status(500).send({
-     success: false,
-     message: `Only ${availableQuanityOfBloodGroup}ML of ${requestedBloodGroup.toUpperCase()} is available`,
-   });
- }
- req.body.hospital = user?._id;
-} 
-else{
-  req.body.donar = user?._id;   //we have to pass donar id also, we are not passing it manually
-}
+      //quantity validation
+      if (availableQuanityOfBloodGroup < requestedQuantityOfBlood) {
+        return res.status(500).send({
+          success: false,
+          message: `Only ${availableQuanityOfBloodGroup}ML of ${requestedBloodGroup.toUpperCase()} is available`,
+        });
+      }
+      req.body.hospital = user?._id;
+    } else {
+      req.body.donar = user?._id; //we have to pass donar id also, we are not passing it manually
+    }
     //save record
     const inventory = new inventoryModel(req.body);
     await inventory.save();
@@ -93,7 +92,6 @@ else{
     });
   }
 };
-
 
 // GET All BLOOD RECORDS
 const getInventoryController = async (req, res) => {
@@ -144,6 +142,29 @@ const getInventoryHospitalController = async (req, res) => {
   }
 };
 
+// GET BLOOD RECORD OF 3
+const getRecentInventoryController = async (req, res) => {
+  try {
+    const inventory = await inventoryModel
+      .find({
+        organisation: req.body.userId,
+      })
+      .limit(3)
+      .sort({ createdAt: -1 });
+    return res.status(200).send({
+      success: true,
+      message: "recent Invenotry Data",
+      inventory,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      success: false,
+      message: "Error In Recent Inventory API",
+      error,
+    });
+  }
+};
 
 // GET DONAR REOCRDS
 const getDonarsController = async (req, res) => {
@@ -171,10 +192,6 @@ const getDonarsController = async (req, res) => {
   }
 };
 
-
-
-
-
 const getHospitalController = async (req, res) => {
   try {
     const organisation = req.body.userId;
@@ -200,8 +217,8 @@ const getHospitalController = async (req, res) => {
     });
   }
 };
-  
- // GET ORG PROFILES
+
+// GET ORG PROFILES
 const getOrgnaisationController = async (req, res) => {
   try {
     const donar = req.body.userId;
@@ -256,5 +273,6 @@ module.exports = {
   getHospitalController,
   getOrgnaisationController,
   getOrgnaisationForHospitalController,
-  getInventoryHospitalController
+  getInventoryHospitalController,
+  getRecentInventoryController,
 };
