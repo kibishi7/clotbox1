@@ -34,7 +34,7 @@ app.use("/api/v1/admin", require("./routes/adminRoutes"));
 
 //PORT
 //to avoid crash in this use process.env.PORT
-const PORT = 8080;
+const PORT =  process.env.PORT || 8080;
 
 //listen to listen all application using PORT
 app.listen(PORT, () => {
