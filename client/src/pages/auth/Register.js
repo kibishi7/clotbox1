@@ -3,6 +3,7 @@ import Form from "../../components/shared/Form/Form";
 import { useSelector } from "react-redux";
 import Spinner from "../../components/shared/Spinner";
 
+
 const Register = () => {
   const { loading, error } = useSelector((state) => state.auth);
   return (
@@ -11,16 +12,22 @@ const Register = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="row g-0">
-          <div className="col-md-8 form-banner ">
-            <img src="./assets/images/banner2.jpg" alt="registerImage" />
-          </div>
-          <div className="col-md-4 form-container">
-            <Form
-              formTitle={"Register"}
-              submitBtn={"Register"}
-              formType={"register"}
-            />
+        <div className="register-page"> {/* Add the CSS class for the register page */}
+          <div className="container">
+            <div className="row">
+              <div className="col-md-6">
+                <img src="./assets/images/banner2.jpg" alt="Register" className="img-fluid" />
+              </div>
+              <div className="col-md-6">
+                <div className="form-container">
+                  <Form
+                    formTitle={"Register"}
+                    submitBtn={"Register"}
+                    formType={"register"}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}

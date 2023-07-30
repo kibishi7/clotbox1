@@ -99,7 +99,7 @@ const Form = ({ formType, submitBtn, formTitle }) => {
               return (
                 <>
                   <InputType
-                    labelText={"email"}
+                    labelText={"Email"}
                     labelFor={"forEmail"}
                     inputType={"email"}
                     name={"email"}

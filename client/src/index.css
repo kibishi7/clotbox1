@@ -2,46 +2,91 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* overflow: hidden; */
 }
 
-/* ===========
-==== FORM
-=========== */
+/* Apply styles to the form fields */
+.form-container form {
+  background-color: #f9f9f9;
+  padding: 40px; /* Increase padding to make the form bigger */
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  /* Add border to the form */
+  border: 1px solid #ccc;
+}
 
-.form-banner img {
-  height: 100%;
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-container label {
+  font-weight: bold;
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"] {
   width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-.form-container {
+.form-container button {
+  width: 100%; /* Set the button to take the full width of the container */
+  max-width: 200px; /* Set a maximum width for the button */
+  padding: 8px; /* Adjust padding to make the button smaller */
+  background-color: #ff3d00;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  /* Add some box-shadow for a raised effect */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.form-container button:hover {
+  background-color: #ff5722;
+}
+
+/* Apply orange gradient background to the entire login and register page */
+.login-page,
+.register-page {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  padding: 20px; /* Add padding to create space around the form */
+  background: linear-gradient(to bottom right, #ff8c00, #ff4500);
 }
 
-/* =============
-====== laoder 
-=============== */
-.loader-container {
+/* Style the image in the left column for both login and register pages */
+.login-page img,
+.register-page img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px 0 0 8px; /* Rounded border on the left side */
+}
+
+/* Center the image horizontally and vertically */
+.register-page .col-md-6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
 }
 
-.loader {
-  width: 48px;
-  height: 48px;
-  border: 5px solid #fff;
-  border-bottom-color: #ff3d00;
-  border-radius: 50%;
-  display: inline-block;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
+/* Responsive styling for the login and register buttons */
+@media (max-width: 576px) {
+  .form-container button {
+    padding: 6px; /* Adjust padding for smaller screens */
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
 }
+/* Add additional styles to the navbar if needed */
+
+
 
 @keyframes rotation {
   0% {
